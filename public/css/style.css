@@ -1,0 +1,175 @@
+#logo { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	color:rgba(79.00000289082527, 79.00000289082527, 79.00000289082527, 1);
+	opacity:1;
+	font-family:Roboto;
+	text-align:left;
+	font-size: 7em;
+	letter-spacing:0;
+	line-height:56px;
+}
+
+#step1_layer { 
+	margin: auto;
+	width: 50%;
+	border: 3px solid;
+	padding: 30px;
+	
+}
+
+#step1_box{
+	/* 🎨 Color */
+	height: 68px;
+	left: 0px;
+	right: 0px;
+	top: calc(50% - 68px/2);
+
+	/* 00. On Surface / High Emphasis */
+
+	background:rgba(79.00000289082527, 79.00000289082527, 79.00000289082527, 1);
+	border-radius: 4px;
+}
+
+#step1_text{
+
+	position: relative;
+	/* text-align: left; */
+	height: 20px;
+	left: 0.1%;
+	right: 50%;
+	top: 20px;
+	
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 83%;
+	/* identical to box height, or 83% */
+	
+	letter-spacing: 0.25px;
+	
+	/* 03. On Primary / High Emphasis */
+	
+	color: #FFFFFF;
+}
+
+#step2_layer { 
+	margin: auto;
+	width: 50%;
+	border: 3px solid;
+	padding: 30px;
+	
+}
+
+#step2_box{
+	/* 🎨 Color */
+	height: 68px;
+	left: 0px;
+	right: 0px;
+	top: calc(50% - 68px/2);
+	background:rgba(79.00000289082527, 79.00000289082527, 79.00000289082527, 1);
+	border-radius: 4px;
+}
+
+#step2_text{
+
+	position: relative;
+	height: 20px;
+	left: 0.1%;
+	right: 50%;
+	top: 20px;
+	
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 83%;	
+	letter-spacing: 0.25px;
+		
+	color: #FFFFFF;
+}
+
+
+#step3_layer { 
+	margin: auto;
+	width: 50%;
+	border: 3px solid;
+	padding: 30px;
+	
+}
+
+#step3_box{
+	/* 🎨 Color */
+	height: 68px;
+	left: 0px;
+	right: 0px;
+	top: calc(50% - 68px/2);
+	background:rgba(79.00000289082527, 79.00000289082527, 79.00000289082527, 1);
+	border-radius: 4px;
+}
+
+#step3_text{
+
+	position: relative;
+	height: 20px;
+	left: 0.1%;
+	right: 50%;
+	top: 20px;
+	
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 83%;	
+	letter-spacing: 0.25px;
+		
+	color: #FFFFFF;
+}
+
+#step4_layer { 
+	margin: auto;
+	width: 50%;
+	border: 3px solid;
+	padding: 30px;
+	
+}
+
+#step4_box{
+	/* 🎨 Color */
+	height: 68px;
+	left: 0px;
+	right: 0px;
+	top: calc(50% - 68px/2);
+	background:rgba(79.00000289082527, 79.00000289082527, 79.00000289082527, 1);
+	border-radius: 4px;
+}
+
+#step4_text{
+
+	position: relative;
+	height: 20px;
+	left: 0.1%;
+	right: 50%;
+	top: 20px;
+	
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 83%;	
+	letter-spacing: 0.25px;
+		
+	color: #FFFFFF;
+}
+
+#img_btn{
+	display: block;
+	width: 100%;
+	height: 100%
+	border: none;
+	background-color: #BDBDBD;
+	padding: 14px 28px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+}

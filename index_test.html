@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale=1.0>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>NATHAN</title>
+    <style>
+        #wrap { height: 800px; margin: 0 auto; color: #FFF; text-align: center;}
+        #header { height: 100px; }
+        #nav { height: 100px; ; }
+        #sidebar { height: 500px; width:0%; background-color: #333; float: left;} 
+        #contents { height: 500px; width:100%;  float: left;}
+        #footer { height: 100px;  clear: both;}
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+
+        <div id="header">header</div>
+
+        <div id="nav">
+            <span id="logo">NATHAN</span>
+        </div>
+
+        <div id="sidebar"></div>
+
+        <div id="contents">
+            <div id="step1_layer">
+                <div id="step1_box" class="label">
+                    <p id="step1_text">동영상 불러오기</p>
+                </div>
+                <div class="elements" style="display:none; color:#333">
+                    <button type="button" class="btm_image" id="img_btn" onclick="openTextFile()"><img src="img/FAB.png" width=60% height="60%"></button>
+                    <div id="output"> File Contents Area</div>
+                </div>
+            </div>
+            <div id="step2_layer">
+                <div id="step2_box" class="label">
+                    <span id="step2_text">명령어 입력하기</span>
+                </div>
+                <div class="elements" style="display:none; color:#333">Hello2</div>
+            </div>
+            <div id="step3_layer">
+                <div id="step3_box" class="label">
+                    <span id="step3_text">자동 구간 삭제</span>
+                </div>
+                <div class="elements" style="display:none; color:#333">Hello3</div>
+            </div>
+            <div id="step4_layer">
+                <div id="step4_box" class="label">
+                    <span id="step4_text">단어 검색 및 삭제</span>
+                </div>
+                <div class="elements" style="display:none; color:#333">Hello4</div>
+            </div>
+        </div>
+       
+        <div id="footer"></div>
+    </div>
+ 	
+    <!-- <script src="design.js"></script> -->
+    <script type="text/javascript">
+        var elements = document.getElementsByTagName("div");
+
+        // 모든 영역 접기
+        for (var i = 0; i < elements.length; i++) {
+        if (elements[i].className == "elements") {
+            elements[i].style.display="none";
+        } else if (elements[i].className == "label") {
+            elements[i].onclick=switchDisplay;
+        }
+        }
+
+        // 상태에 따라 접거나 펼치기
+        function switchDisplay() {
+
+        var parent = this.parentNode;
+        var target = parent.getElementsByTagName("div")[1];
+
+        if (target.style.display == "none") {
+            target.style.display="block";
+        } else {
+            target.style.display="none";
+        }
+        return false;
+        }
+
+        function openTextFile(){
+            var input = document.createElement("input");
+
+            input.type = "file";
+            input.accept = "text/plain, text/html, .jsp";
+
+            input.click();
+            input.onchange = function(event){
+                processFile(event.target.files[0]);
+            };
+
+        }
+
+        function processFile(file){
+            var reader = new FileReader();
+            reader.readAsText(file, "UTF-8");
+            reader.onload = function() {
+                output.innerText = reader.result;
+            };
+        }
+    </script>
+	
+</body>
+</html>
+
+

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="./js/python.js"></script> 
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" initial-scale=1.0>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./public/css/func1.css">
+
+    <link href="http://vjs.zencdn.net/4.3/video-js.css" rel="stylesheet">
+    <link href="./videojs-markers-0.7.0/dist/videojs.markers.css" rel="stylesheet">
+
+
+    <title>NATHAN</title>
+    <style>
+      #wrap { height: 800px; margin: 0 auto; background-color: #FFF; text-align: center; }
+      #header { height: 100px; }
+      #nav { height: 100px; ; }
+      #sidebar { height: 500px; width:0%;  float: left;} 
+      #contents { height: 500px; width:100%;  float: left; text-align: center;}
+      #footer { height: 100px;  clear: both;}
+      nav { height:500px; width:20%; background:skyblue; float:left;color:purple; text-align:center; line-height:500px; vertical-align: top;}
+      article {height:500px; width:80%; background: green; opacity:0.3; border : 3px dashed pink; box-sizing:border-box; border-radius:20px; margin:10px auto;  float: left;}
+      ol {padding-inline-start: 0px;}
+      li {list-style-type: none; font-size: 1vh; height: 100px; background:wheat; line-height: 100px;}
+      img {height:80px; width: 80%; vertical-align: middle;}
+      b {height: 30%;}
+      
+      ul#marker-list{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      ul#marker-list li{
+        position: relative;
+        margin-bottom: -1px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+      }
+      ul#marker-list li:last-child {
+        margin-bottom: 0;
+        border-bottom-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+      }
+      ul#marker-list li a{
+        display: block;
+        padding: 10px 15px;
+        color: #555;
+        text-decoration: none;
+      }
+      ul#marker-list li a:hover {
+        color: #555;
+        text-decoration: none;
+        background-color: #f5f5f5;
+      }
+
+    </style>
+</head>
+
+<body>
+  <div id="wrap">
+
+    <div id="header"></div>
+
+    <div id="nav">
+      <span id="logo">NATHAN</span>
+    </div>
+
+    <div id="sidebar"></div>
+
+    <div id="contents">
+      <section>
+        <nav>
+          <div class='slide_list'>
+            <!-- <dl class='slide_item_list'>
+              <ol id="slide_items"></ol>
+            </dl> -->
+
+            <ul id='marker-list'>
+
+            </ul>
+          </div>
+        </nav>
+        <article>
+          <div>
+          <!-- <video id="video" ccontrols preload="none" class="fun1_video" width="70%" height="50%"> -->
+            <!-- controls preload="none" poster='http://video-js.zencoder.com/oceans-clip.jpg'
+            data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'> -->
+            
+            <video id="video" controls preload="none" class="video-js vjs-default-skin" width="100%" height="500px">
+              <source src="./testvideo/test1.mp4" type='video/mp4'>
+            </video>
+          </div>
+        </article>
+      </section>  
+    </div>  
+
+    <div id="footer">
+      <p> testtttt</p>
+    </div>
+</div>
+
+</body>
+
+  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="http://vjs.zencdn.net/4.3/video.js"></script>
+  <script src='./videojs-markers-0.7.0/dist/videojs-markers.js'></script>
+  <script>
+    // initialize video.js
+    var player = videojs('video');
+
+    var markers = [
+      {
+          time: 0,
+          text: "Slide 1"
+      },
+      {
+          time: 195,
+          text: "Slide 1-1"
+      },
+      {
+          time: 348.0,
+          text: "Slide 2"
+      },
+      {
+        time: 521,
+        text: "Slide 2-1"
+      }
+    ];
+
+    //load the marker plugin
+    player.markers({
+        markerTip:{
+          display: true,
+          text: function(marker){
+              return marker.text;
+          }
+        },
+        breakOverlay:{
+          display: true,
+          displayTime: 3,
+          text: function(marker) {
+              return "This is an break overlay: " + marker.text;
+          }
+        },
+        onMarkerReached: function(marker) {
+          console.log(marker);
+        },
+        markers: markers
+    });
+
+    $(document).ready(function(){
+        // insert marker list
+        for(var i =0; i < markers.length; i++){
+          var item = $("<li data-index='"+i+"'><a href='#'>"+markers[i].text+"</a></li>");
+          $("#marker-list").append(item);
+        }
+
+        // set up click event
+        $("#marker-list li").click(function(){
+          var index = $(this).data("index");
+
+          player.currentTime(markers[index].time);
+        });
+
+    });
+
+  </script>
+      
+  <!-- <script type="text/javascript" src="background/stt.js"></script>	 -->
+  <script type="text/JavaScript">
+    function getVideoImage(path, secs, callback) {
+      var me = this, video = document.createElement('video');
+      video.onloadedmetadata = function() {
+        if ('function' === typeof secs) {
+          secs = secs(this.duration);
+        }
+        this.currentTime = Math.min(Math.max(0, (secs < 0 ? this.duration : 0) + secs), this.duration);
+      };
+      video.onseeked = function(e) {
+        var canvas = document.createElement('canvas');
+        canvas.height = video.videoHeight/5;
+        canvas.width = video.videoWidth/5;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        var img = new Image();
+        img.src = canvas.toDataURL();
+        callback.call(me, img, this.currentTime, e);
+      };
+      video.onerror = function(e) {
+        callback.call(me, undefined, undefined, e);
+      };
+      video.src = path;
+    }
+    
+    function showImageAt(secs) {
+      var duration;
+      getVideoImage(
+        './testvideo/test1.mp4',
+        function(totalTime) {
+          duration = totalTime;
+          return secs;
+        },
+        function(img, secs, event) {
+          if (event.type == 'seeked') {
+            var li = document.createElement('li');
+            // li.innerHTML += '<b>Frame at second ' + secs + ':</b>';
+            li.appendChild(img);
+            document.getElementById('slide_items').appendChild(li);
+            li.innerHTML += '<br>Frame at second' + secs + '</img>';
+            // li.innerHTML += '<div style="left: 100px;  font-size: 1vh; padding:0; margin:0; height:15px; background:purple;>'
+            //                   + 'Frame at second ' + secs + '</div>';
+            if (duration >= ++secs) {
+              showImageAt(secs);
+            };
+          }
+        }
+      );
+    }
+    showImageAt(1100);
+    showImageAt(1101);
+    showImageAt(1102);
+
+    // Number of different ranges of time have been buffered. Usually 1.
+    numberOfRanges = bufferedTimeRange.length,
+    // Time in seconds when the first range starts. Usually 0.
+    firstRangeStart = bufferedTimeRange.start(0),
+    // Time in seconds when the first range ends
+    firstRangeEnd = bufferedTimeRange.end(0),
+    // Length in seconds of the first time range
+    firstRangeLength = firstRangeEnd - firstRangeStart;
+    console.log(firstRangeLength);
+    </script>
+
+</html>
+
+
